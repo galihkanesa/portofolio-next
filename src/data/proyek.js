@@ -15,7 +15,7 @@ export const proyek = [
     {
         slug: "modul-02",
         judul: "Mobile Responsive",
-        kategori: "HTML",
+        kategori: ["HTML", "CSS"],
         minggu: "minggu 02",
         gambar: "/proyek/Modul-2.png",
         deskripsi: "Mobile Responsive Web Design adalah teknik membuat website agar tampilannya menyesuaikan berbagai ukuran layar, seperti HP, tablet, dan komputer.",
@@ -28,7 +28,7 @@ export const proyek = [
     {
         slug: "Modul-03",
         judul: "Interactive digital profil",
-        kategori: "HTML",
+        kategori: ["HTML", "CSS", "JavaScript"],
         minggu: "minggu 03",
         gambar: "/proyek/Modul-3.png",
         deskripsi: "Interactive Digital Profile adalah website profil pribadi yang menampilkan informasi diri dengan fitur interaktif seperti navigasi dan mode gelap terang.",
