@@ -1,81 +1,84 @@
 export const metadata = {
   title: "Tentang",
-  description:
-    "Cerita, hobi, cita-cita, dan jadwal belajar Galih Tegar As'abiman.",
+  // 1. Mengubah deskripsi metadata menjadi nama Anda (Andi Pratama)
+  description: "Cerita, hobi, cita-cita, dan jadwal belajar Galih Tegar As'abiman.",
 };
 
-const jadwalBelajar = [
-  { hari: "Senin", waktu: "20.00–21.00", kegiatan: "Membaca modul" },
-  { hari: "Selasa", waktu: "19.00–20.00", kegiatan: "Mengerjakan tugas" },
-  { hari: "Rabu", waktu: "20.00–22.00", kegiatan: "Merangkum dan take video" },
-];
-
 export default function Tentang() {
-  return (
-    <main className="mx-auto max-w-5xl px-4 py-10">
-      <section className="rounded-xl border border-gray-200 bg-white p-5 shadow-sm">
-        <h1 className="text-3xl font-bold text-utama md:text-4xl">
-          Perkenalkan
-        </h1>
-        <p className="mt-3 text-lg text-gray-700">
-          Saya Galih Tegar As&apos;abiman, siswa kelas X RPL 1 DARI SMKN 1 Kepanjen yang sedang belajar
-          untuk menjadi Junior Web Developer di Kelas Industri UBIG.
-        </p>
-      </section>
 
-      <section className="mt-8 grid gap-4 md:grid-cols-2">
-        <article className="rounded-xl border border-gray-200 bg-white p-5 shadow-sm">
-          <h2 className="text-xl font-bold text-utama">Hobi</h2>
-          <p className="mt-2 text-gray-700">
-            Saya suka bersepeda untuk menikmati perjalanan dan bermain game
-            sebagai hiburan di waktu luang.
-          </p>
-        </article>
-        <article className="rounded-xl border border-gray-200 bg-white p-5 shadow-sm">
-          <h2 className="text-xl font-bold text-utama">Cita-cita</h2>
-          <p className="mt-2 text-gray-700">
-            Saya ingin menjadi profesional di bidang teknologi informasi,
-            khususnya Web Development atau Cyber Security, dan mengembangkan
-            kemampuan untuk menciptakan teknologi yang bermanfaat.
-          </p>
-        </article>
-      </section>
+  const jadwalBelajar = [
+    { hari: "Senin", waktu: "19.00 - 20.00", kegiatan: "Membaca ulang modul" },
+    { hari: "Selasa", waktu: "19.00 - 21.00", kegiatan: "Mengerjakan tugas praktik" },
+    { hari: "Rabu", waktu: "19.30 - 20.30", kegiatan: "Merekam video dan menulis laporan" },
+  ];
+  
+ return (
+   // 2. Ditambahkan class "space-y-6" pada tag <main> agar setiap section otomatis memiliki jarak vertikal yang rapi dan konsisten
+   <main className="mx-auto max-w-5xl px-4 py-10 space-y-6">
+     
+     <h1 className="text-3xl font-bold text-utama dark:text-sky-200 md:text-4xl">Perkenalan</h1>
 
-      <section className="mt-8 rounded-xl border border-gray-200 bg-white p-5 shadow-sm">
-        <h2 className="mb-4 text-2xl font-bold text-utama">Jadwal Belajar</h2>
-        <div className="overflow-x-auto">
-          <table className="w-full min-w-[480px] border-collapse text-left">
-            <thead>
-              <tr>
-                <th scope="col" className="border-2 border-utama bg-utama p-3 text-white">
-                  Hari
-                </th>
-                <th scope="col" className="border-2 border-utama bg-utama p-3 text-white">
-                  Waktu
-                </th>
-                <th scope="col" className="border-2 border-utama bg-utama p-3 text-white">
-                  Kegiatan
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              {jadwalBelajar.map((jadwal) => (
-                <tr key={jadwal.hari}>
-                  <td className="h-12 border-2 border-gray-300 p-3">
-                    {jadwal.hari}
-                  </td>
-                  <td className="h-12 border-2 border-gray-300 p-3">
-                    {jadwal.waktu}
-                  </td>
-                  <td className="h-12 border-2 border-gray-300 p-3">
-                    {jadwal.kegiatan}
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      </section>
-    </main>
-  );
+     {/* Section 2: Tentang Saya */}
+     <section id="tentang-saya" className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 scroll-mt-6">
+       <h2 className="text-xl font-bold text-gray-800 dark:text-gray-100 mb-3">Tentang Saya</h2>
+       <p className="text-gray-600 dark:text-gray-400 leading-relaxed text-sm md:text-base">
+         Saya tinggal di Malang dan senang mencoba hal baru di dunia teknologi. Saya ingin bisa membuat website yang bermanfaat untuk sekolah dan UMKM di sekitar rumah.
+       </p>
+     </section>
+
+     {/* Section 3 & 4: Hobi & Cita-Cita Grid */}
+     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+       
+       {/* Hobi - Diubah menggunakan list-disc biasa agar tanda bullet poin tidak menabrak teks */}
+       <section className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700">
+         <h2 className="text-xl font-bold text-gray-800 dark:text-gray-100 mb-4">Hobi</h2>
+         <ul className="list-disc pl-5 text-gray-600 dark:text-gray-400 text-sm md:text-base space-y-2">
+           <li>Bersepedah</li>
+           <li>Bermain Game</li>
+           <li>Workout</li>
+         </ul>
+       </section>
+
+       {/* Cita-Cita */}
+       <section className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700">
+         <h2 className="text-xl font-bold text-gray-800 dark:text-gray-100 mb-3">Cita-cita</h2>
+         <p className="text-gray-600 dark:text-gray-400 text-sm md:text-base mb-3">
+           Menjadi <span className="font-bold text-gray-800 dark:text-gray-100">Full Stack Web Developer</span>. Langkah yang saya rencanakan:
+         </p>
+         <ol className="list-decimal pl-5 text-gray-600 dark:text-gray-400 text-sm md:text-base space-y-2">
+           <li>Menuntaskan Kelas Industri UBIG sampai tuntas</li>
+           <li>Magang di perusahaan Besar</li>
+           <li>Terus belajar tentang programer</li>
+         </ol>
+       </section>
+     </div>
+
+     {/* Section 6: Jadwal Belajar */}
+     <section className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700">
+       <h2 className="text-xl font-bold text-gray-800 dark:text-gray-100 mb-5">Jadwal Belajar</h2>
+       <div className="overflow-x-auto rounded-lg border border-gray-200 dark:border-gray-700">
+         <table className="w-full text-left border-collapse text-sm md:text-base">
+           <thead>
+             {/* Mengganti warna bg menjadi bg-[#0d233a] agar selaras dengan tema Navbar utama */}
+             <tr className="bg-[#0d233a] text-white">
+               <th className="p-4 font-semibold">Hari</th>
+               <th className="p-4 font-semibold">Waktu</th>
+               <th className="p-4 font-semibold">Kegiatan</th>
+             </tr>
+           </thead>
+           <tbody className="text-gray-600 dark:text-gray-400 divide-y divide-gray-200 dark:divide-gray-700">
+             {jadwalBelajar.map((item, index) => (
+               <tr key={index} className="hover:bg-slate-50 dark:hover:bg-gray-700 transition-colors">
+                 <td className="p-4 font-medium">{item.hari}</td>
+                 <td className="p-4">{item.waktu}</td>
+                 <td className="p-4">{item.kegiatan}</td>
+               </tr>
+             ))}
+           </tbody>
+         </table>
+       </div>
+     </section>
+
+   </main>
+ );
 }

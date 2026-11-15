@@ -1,89 +1,70 @@
 import Link from "next/link";
 import Hero from "@/components/Hero";
 import ProyekCard from "@/components/ProyekCard";
-import SkillCard from "@/components/SkillCard";
 import { proyek } from "@/data/proyek";
+import FilterKeahlian from "@/components/FilterKeahlian";
 
-const skills = [
-  { nama: "HTML", level: "Menengah" },
-  { nama: "CSS", level: "Menengah" },
-  { nama: "Git dan GitHub", level: "Dasar" },
-  { nama: "Desain poster dengan Canva", level: "Mahir" },
-  { nama: "JavaScript", level: "Dasar" },
-];
-const proyekTerbaru = proyek.slice(-3);
-const jadwalBelajar = [
-  { hari: "Senin", waktu: "20.00–21.00", kegiatan: "Membaca modul" },
-  { hari: "Selasa", waktu: "19.00–20.00", kegiatan: "Mengerjakan tugas" },
-  { hari: "Rabu", waktu: "20.00–22.00", kegiatan: "Merangkum dan take video" },
-];
-export default function Home() {
+export default async function Page() {
+  const skills = [
+    { id: 1, nama: "HTML", level: "Menengah" },
+    { id: 2, nama: "CSS", level: "Menengah" },
+    { id: 3, nama: "Git dan GitHub", level: "Dasar" },
+    { id: 4, nama: "Desain poster dengan Canva", level: "Mahir" },
+    { id: 5, nama: "JavaScript", level: "Dasar" },
+  ];
+
+  const proyekTerbaru = proyek.slice(-3);
+
   return (
-    <main className="mx-auto max-w-5xl px-4 py-10">
-      <Hero
-        nama="Galih Tegar As'abiman"
-        tagline="Siswa kelas X SMK, calon Junior Web Developer di Kelas Industri UBIG."
-        ctaHref="/tentang"
-        ctaLabel="Tentang Saya"
-      />
-      <section className="mt-10">
-        <h2 className="mb-4 text-2xl font-bold text-utama">Keahlian</h2>
-        <div className="grid gap-4 md:grid-cols-3">
-          {skills.map((skill) => (
-            <SkillCard key={skill.nama} nama={skill.nama}
-              level={skill.level} />
-          ))}
-        </div>
-        <Link
-          href="/keahlian"
-          className="mt-6 inline-block rounded-lg bg-utama px-5 py-2 font-semibold text-white hover:bg-aksen"
-        >
-          Lihat detail keahlian saya
-        </Link>
-      </section>
-      <section className="mt-10">
-        <h2 className="mb-4 text-2xl font-bold text-utama">Proyek Terbaru</h2>
-        <div className="grid gap-6 md:grid-cols-3">
-          {proyekTerbaru.map((item) => (
-            <ProyekCard key={item.slug} proyek={item} />
-          ))}
-        </div>
-        <Link
-          href="/proyek"
-          className="mt-6 inline-block rounded-lg bg-utama px-5 py-2 font-semibold text-white"
-        >
-          Lihat semua proyek
-        </Link>
-      </section>
-      <section className="mt-10 rounded-xl border border-gray-200 bg-white p-5 shadow-sm">
-        <h2 className="mb-4 text-2xl font-bold text-utama">Jadwal Belajar</h2>
-        <div className="overflow-x-auto">
-          <table className="w-full min-w-[480px] border-collapse text-left">
-            <thead>
-              <tr>
-                <th scope="col" className="border-2 border-utama bg-utama p-3 text-white">
-                  Hari
-                </th>
-                <th scope="col" className="border-2 border-utama bg-utama p-3 text-white">
-                  Waktu
-                </th>
-                <th scope="col" className="border-2 border-utama bg-utama p-3 text-white">
-                  Kegiatan
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              {jadwalBelajar.map((jadwal) => (
-                <tr key={jadwal.hari}>
-                  <td className="h-12 border-2 border-gray-300 p-3">{jadwal.hari}</td>
-                  <td className="h-12 border-2 border-gray-300 p-3">{jadwal.waktu}</td>
-                  <td className="h-12 border-2 border-gray-300 p-3">{jadwal.kegiatan}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      </section>
-    </main>
+    <div className="min-h-screen text-gray-800 dark:text-gray-100 flex flex-col font-sans">
+      <main className="max-w-5xl mx-auto p-4 md:p-10 w-full space-y-12">
+        
+        {/* Section 1: Hero */}
+        <Hero
+          nama="Galih Tegar As,abiman"
+          tagline="Siswa kelas X SMK, calon Junior Web Developer di Kelas Industri UBIG." 
+          // Note: Jika fungsi scroll-to-section dibutuhkan di Hero, 
+          // pastikan logika interaksinya diatur di dalam komponen Hero (Client Component) itu sendiri.
+        />
+
+        {/* Section: Keahlian */}
+        <section id="keahlian" className="scroll-mt-6">
+          <h2 className="text-xl font-bold text-utama dark:text-sky-200 mb-5">Keahlian</h2>
+          
+          {/* Ketentuan 5: Mengganti div kartu keahlian lama dengan <FilterKeahlian /> */}
+          <FilterKeahlian skills={skills} />
+
+          <div className="mt-8 flex justify-start">
+            <Link 
+              href="/keahlian" 
+              className="rounded-lg bg-red-700 px-5 py-2.5 font-semibold text-white shadow-sm hover:bg-red-800 transition-all text-sm"
+            >
+              Lihat semua keahlian
+            </Link>
+          </div>
+        </section>
+
+        {/* Section: Proyek Terbaru */}
+        <section className="pt-2">
+          <h2 className="mb-5 text-xl font-bold text-utama dark:text-sky-200">Proyek Terbaru</h2>
+          
+          <div className="grid gap-6 sm:grid-cols-2 md:grid-cols-3">
+            {proyekTerbaru.map((item) => (
+              <ProyekCard key={item.slug} proyek={item} />
+            ))}
+          </div>
+          
+          <div className="mt-8 flex justify-start">
+            <Link 
+              href="/proyek" 
+              className="rounded-lg bg-red-700 px-5 py-2.5 font-semibold text-white shadow-sm hover:bg-red-800 transition-all text-sm"
+            >
+              Lihat semua proyek
+            </Link>
+          </div>
+        </section>
+
+      </main>
+    </div>
   );
 }
