@@ -6,13 +6,10 @@ import FilterKeahlian from "@/components/FilterKeahlian";
 import { buttonVariants } from "@/components/ui/button";
 
 export default async function Home() {
-  const skills = [
-    { id: 1, nama: "HTML", level: "Menengah" },
-    { id: 2, nama: "CSS", level: "Menengah" },
-    { id: 3, nama: "Git dan GitHub", level: "Dasar" },
-    { id: 4, nama: "Desain poster dengan Canva", level: "Mahir" },
-    { id: 5, nama: "JavaScript", level: "Dasar" },
-  ];
+  const { data: skills } = await supabase
+    .from("skills")
+    .select("*")
+    .order("id");
 
   const { data: proyekTerbaru } = await supabase
     .from("projects")
