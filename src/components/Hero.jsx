@@ -14,8 +14,8 @@ export default function Hero({ nama, tagline, onLihatKeahlianClick }) {
         className="w-32 h-32 rounded-full aspect-square object-cover border-4 border-red-600"     
       />      
       <div className="flex-1">        
-        <h1 className="text-3xl font-bold text-utama dark:text-sky-200 md:text-5xl">Halo, saya {nama}!</h1>
-        <p className="mt-3 text-lg text-gray-700 dark:text-gray-300">{tagline}</p>
+        <h1 className="text-3xl font-bold text-primary md:text-5xl">Halo, saya {nama}!</h1>
+        <p className="mt-3 text-lg text-muted-foreground">{tagline}</p>
         
         
         <div className="mt-5 flex flex-wrap items-center gap-3 justify-center md:justify-start">

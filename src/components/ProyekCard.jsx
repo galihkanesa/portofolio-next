@@ -1,60 +1,32 @@
 import Image from "next/image";
 import Link from "next/link";
+import { Badge } from "@/components/ui/badge";
+import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 
 export default function ProyekCard({ proyek }) {
   return (
-    <Link
-      href={`/proyek/${proyek.slug}`}
-      
-      className="block overflow-hidden rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 shadow-sm hover:shadow-md transition-all duration-300 group h-full flex flex-col justify-between"
-    >
-      
-      <div className="flex flex-col h-full">
-        
-        <div className="relative w-full aspect-video overflow-hidden bg-slate-50 dark:bg-gray-700 flex-shrink-0 border-b border-gray-100 dark:border-gray-700">
+    <Link href={`/proyek/${proyek.slug}`} className="block rounded-xl hover:shadow-md">
+      <Card className="h-full">
+        {proyek.gambar_url ? (
           <Image
-            src={proyek.gambar}
+            src={proyek.gambar_url}
             alt={`Tangkapan layar ${proyek.judul}`}
-            fill 
-            sizes="(max-w-768px) 100vw, 33vw"
+            width={640}
+            height={420}
             loading="eager"
-            priority={true}       
-            quality={100}         
-            unoptimized={true}    
-            className="object-cover object-top transition-transform duration-500 group-hover:scale-103"
+            className="h-auto w-full"
           />
-        </div>
-
-        <div className="p-5 flex flex-col flex-grow justify-between">
-          <div>
-            {/* Bagian Kategori */}
-            <div className="flex flex-wrap gap-1">
-              {(Array.isArray(proyek.kategori)
-                ? proyek.kategori
-                : [proyek.kategori]
-              ).map((kat, index) => (
-                <span 
-                  key={index} 
-                  className="rounded-full bg-slate-100 dark:bg-gray-700 px-2.5 py-0.5 text-xs font-semibold text-utama dark:text-sky-200 mr-1 mb-1"
-                >
-                  {kat}
-                </span>
-              ))}
-            </div>
-            
-            {/* Judul Proyek */}
-            <h3 className="mt-3 text-lg font-bold text-utama dark:text-sky-200 group-hover:text-blue-600 transition-colors line-clamp-2">
-              {proyek.judul}
-            </h3>
-            
-            {/* Deskripsi Proyek dengan flex-grow agar batas bawah paragraf lurus sejajar */}
-            <p className="mt-1 text-sm text-gray-600 dark:text-gray-400 line-clamp-3 flex-grow">
-              {proyek.deskripsi}
-            </p>
+        ) : (
+          <div className="flex aspect-[640/420] w-full items-center justify-center bg-muted text-sm text-muted-foreground">
+            Belum ada gambar
           </div>
-        </div>
-
-      </div>
+        )}
+        <CardHeader>
+          <Badge>{proyek.kategori}</Badge>
+          <CardTitle className="text-lg text-primary">{proyek.judul}</CardTitle>
+          <CardDescription>{proyek.deskripsi}</CardDescription>
+        </CardHeader>
+      </Card>
     </Link>
   );
 }
